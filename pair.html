@@ -189,7 +189,7 @@
           <p>
             <h3 class="centered-text">Njabulo JB Session Site</h3>
             <br>
-            <h6>🦋ɴᴊᴀʙᴜʟᴏ ᴊʙ🦋.</h6>
+            <h6>ɴᴊᴀʙᴜʟᴏ ᴊʙ.</h6>
             <h6>Enter Number Starting with Country Code.</h6>
             <div class="input-container">
               <input placeholder="2677********" type="number" id="number" placeholder="Enter your Phone Number with Country Code" name="">
@@ -230,7 +230,7 @@
       if (!c.value) {
         a.innerHTML = '<a style="color:white;font-weight:bold">Enter your WhatsApp number with Country Code</a><br><br>';
       } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
-        a.innerHTML = '<a style="color:black;font-weight:bold">Invalid Number</a><br><br>';
+        a.innerHTML = '<a style="color:white;font-weight:bold">Invalid Number</a><br><br>';
       } else {
         const Fredie_Tech = c.value.replace(/[^0-9]/g, "");
         let bb = "";
@@ -252,7 +252,7 @@
         a.innerHTML = '<a style="color:white;font-weight:bold">Please Wait...</a><br><br>';
         let { data } = await axios(`/code?number=${Fredie_Tech}`);
         let code = data.code || "Service Unavailable";
-        a.innerHTML = '<font id="copy" onclick="Copy()" style="color:black;font-weight:bold" size="5">CODE: <span style="color:white;font-weight:bold">' + code + '</span></font><br><br><br>';
+        a.innerHTML = '<font id="copy" onclick="Copy()" style="color:white;font-weight:bold" size="5">CODE: <span style="color:white;font-weight:bold">' + code + '</span></font><br><br><br>';
       }
     });
 
