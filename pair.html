@@ -1,280 +1,543 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pair Code</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Davincs-MD Pairing Code" />
+  <title>Njabulo-Jb Pair Code</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
+    :root {
+      --primary: linear-gradient(135deg, #00d4ff, #7e00ff);
+      --bg: #000000;
+      --glass: rgba(255, 255, 255, 0.05);
+      --text: #ffffff;
+      --muted: #aaaaaa;
+      --highlight: #00ffff;
+      --radius: 16px;
+      --blur: 12px;
+      --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --glow: 0 0 15px rgba(0, 212, 255, 0.3);
     }
 
-    .video-background {
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background: var(--glass);
+      backdrop-filter: blur(var(--blur));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .background-image {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
       object-fit: cover;
+      z-index: -2;
+      filter: blur(8px) brightness(0.4);
+      transform: scale(1.1);
+    }
+    
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
-    .matrix {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -1;
-      color: rgba(0, 255, 255, 0.3);
-      font-size: 20px;
-      font-family: monospace;
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: var(--primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: var(--glow);
     }
 
-    .matrix div {
-      position: absolute;
-      width: 20px;
-      height: 100%;
-      top: 0;
-      animation: matrix-fall linear infinite;
+    .logo-image {
+      height: 40px;
+      width: auto;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(0, 212, 255, 0.3);
     }
 
-    @keyframes matrix-fall {
-      0% {
-        top: -100%;
-      }
-      100% {
-        top: 100%;
-      }
+    .status {
+      display: flex;
+      gap: 1.5rem;
     }
 
-    .container {
+    .status-item {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+    }
+
+    .status-item:hover {
+      background: rgba(0, 212, 255, 0.1);
+      border-color: var(--highlight);
+    }
+
+    .status-item i {
+      color: var(--highlight);
+    }
+
+    main {
+      flex: 1;
+      padding: 3rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      z-index: 1;
+      gap: 2.5rem;
     }
 
-    .box {
-      width: 300px;
-      height: 320px;
-      padding: 20px;
-      position: relative;
+    .pair-container {
+      background: var(--glass);
+      backdrop-filter: blur(var(--blur));
+      border-radius: var(--radius);
+      padding: 2rem;
       text-align: center;
-      background-color: rgba(210, 105, 30, 0.7);
-      border-radius: 10px;
-      transform: perspective(1000px) rotateY(0deg);
-      box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(5px);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      width: 100%;
+      max-width: 500px;
     }
 
-    #text {
-      color: #f6f5f5;
+    .pair-container h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+      background: var(--primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .centered-text {
-      color: #e9e4e4;
-      text-shadow: 1px 1px 2px black;
+    .pair-container h5 {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
     }
 
     .input-container {
       display: flex;
-      background: rgba(0, 0, 255, 0.3);
-      border-radius: 1rem;
-      box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
-      padding: 0.3rem;
-      gap: 0.3rem;
-      max-width: 300px;
-      width: 100%;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .input-container input {
-      border-radius: 0.8rem 0 0 0.8rem;
-      background: rgba(0, 255, 255, 0.3);
-      width: 100%;
-      flex-basis: 75%;
+      flex: 1;
       padding: 1rem;
-      border: none;
-      border-left: 2px solid rgba(165, 42, 42, 0.5);
-      color: #ffffff;
-      transition: all 0.2s ease-in-out;
-      backdrop-filter: blur(2px);
-    }
-
-    .input-container input::placeholder {
-      color: rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      transition: var(--transition);
     }
 
     .input-container input:focus {
-      border-left: 2px solid rgba(236, 241, 246, 0.7);
       outline: none;
-      background: rgba(165, 42, 42, 0.4);
+      border-color: var(--highlight);
+      box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
     }
 
     .input-container button {
-      flex-basis: 15%;
-      padding: 1rem;
-      background: rgba(0, 0, 0, 0.7);
-      font-weight: 700;
-      letter-spacing: 0.3rem;
-      text-transform: uppercase;
-      color: rgba(128, 0, 128, 0.9);
-      border: 2px solid rgba(255, 0, 0, 0.7);
-      width: 90%;
-      border-radius: 0 1rem 1rem 0;
-      transition: all 0.2s ease-in-out;
+      padding: 1rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
       cursor: pointer;
+      transition: var(--transition);
     }
 
     .input-container button:hover {
-      background-color: rgba(255, 0, 0, 0.7);
-      border-color: rgba(0, 128, 0, 0.7);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
 
-    @media (max-width: 500px) {
-      .input-container {
-        flex-direction: column;
-      }
-
-      .input-container input {
-        border-radius: 0.8rem;
-      }
-
-      .input-container button {
-        padding: 0.4rem;
-        border-radius: 0.8rem;
-      }
+    #pair-result {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: var(--radius);
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .centered-text {
+    #copy-code {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--highlight);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      transition: var(--transition);
+      margin-top: 1rem;
+    }
+
+    #copy-code:hover {
+      background: rgba(0, 212, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+    }
+
+    .music-player {
+      width: 100%;
+      max-width: 500px;
+      background: var(--glass);
+      border-radius: var(--radius);
+      padding: 2rem;
+      backdrop-filter: blur(var(--blur));
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .music-player h2 {
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+      background: var(--primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .track {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.2rem;
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: var(--transition);
+    }
+
+    .track:hover {
+      background: rgba(0, 0, 0, 0.4);
+      border-color: rgba(0, 212, 255, 0.2);
+    }
+
+    .progress {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      width: 0%;
+      background: linear-gradient(90deg, #00d4ff, #7e00ff);
+      height: 100%;
+      transition: width 0.1s linear;
+      position: relative;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    .play-btn {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--highlight);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .play-btn:hover {
+      background: rgba(0, 212, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+    }
+
+    .time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--muted);
+      min-width: 50px;
       text-align: center;
     }
 
-    @media (max-width: 500px) {
-      .box {
-        width: 90%; 
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
       }
-    }
-
-    @media (max-width: 500px) {
-      .input-container input {
-        border-radius: 0.8rem;
-        width: 80%; 
+      
+      main {
+        padding: 1.5rem;
       }
-
+      
+      .input-container {
+        flex-direction: column;
+      }
+      
       .input-container button {
-        padding: 1rem;
-        border-radius: 0.9rem;
-        width: 100%; 
+        width: 100%;
+      }
+      
+      .logo-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .status {
+        margin-top: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <video class="video-background" autoplay muted loop>
-    <source src="https://files.catbox.moe/a1fsk3.mp4" type="video/mp4">
-  </video>
-  <div class="matrix"></div>
-  <div class="container">
-    <div class="main">
-      <div class="box" id="box">
-        <div id="text">
-          <i class="fa fa-user"></i>
-          <p>
-            <h3 class="centered-text">Njabulo JB Session Site</h3>
-            <br>
-            <h6>ɴᴊᴀʙᴜʟᴏ ᴊʙ.</h6>
-            <h6>Enter Number Starting with Country Code.</h6>
-            <div class="input-container">
-              <input placeholder="2677********" type="number" id="number" placeholder="Enter your Phone Number with Country Code" name="">
-              <button id="submit">Submit</button>
-            </div>
-            
-            <a id="waiting-message" class="centered-text" style="display: none;">Please wait a while</a>
-            <br>
-            <br>
-            <main id="pair"></main>
-          </p>
+
+   <img src="https://files.catbox.moe/o3d5hk.jpg" alt="Njabulo-Jb Background" class="background-image">
+  
+  <header>
+    <div class="logo-container">
+      <img src="https://files.catbox.moe/o3d5hk.jpg" alt="Njabulo-Jb Logo" class="logo-image">
+      <div class="logo">NJABULO-JB</div>
+    </div>
+    <div class="status">
+      <div class="status-item"><i class="fas fa-bolt"></i> <span id="battery">--%</span></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="pair-container">
+      <h2>NJABULO JB-Jb PAIRING CODE</h2>
+      <h5>BEST WHATSAPP BOT MADE BY DAVINCS TECH</h5>
+      <p>Please enter your number with country code</p>
+      
+      <div class="input-container">
+        <input type="number" id="number" placeholder="2677782**" required>
+        <button id="submit">SUBMIT</button>
+      </div>
+      
+      <div id="pair-result">
+        <p id="waiting-message" style="display: none;">Please wait a while...</p>
+      </div>
+      
+      <button id="copy-code" style="display: none;" onclick="copyCode()">COPY CODE</button>
+    </div>
+
+    <div class="music-player">
+      <h2>NOW PLAYING</h2>
+      <div class="track">
+        <div>
+          <strong>NJABULO-Jb SESSION </strong>
+          <div class="muted">NJABULO JB</div>
         </div>
+        <div class="controls">
+          <button class="play-btn" onclick="togglePlay('audio1')"><i class="fas fa-play"></i> PLAY</button>
+          <div class="progress"><div class="progress-fill" id="progress1"></div></div>
+          <span class="time" id="time1">0:00</span>
+        </div>
+        <audio id="audio1" src="https://files.catbox.moe/efmcxm.mp3"></audio>
       </div>
     </div>
-  </div>
+  </main>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
-    let a = document.getElementById("pair");
-    let b = document.getElementById("submit");
-    let c = document.getElementById("number");
+    // DOM elements
+    const pairResult = document.getElementById("pair-result");
+    const submitBtn = document.getElementById("submit");
+    const numberInput = document.getElementById("number");
+    const copyCodeBtn = document.getElementById("copy-code");
+    const waitingMessage = document.getElementById("waiting-message");
 
-    async function Copy() {
-      let text = document.getElementById("copy").innerText;
-      let obj = document.getElementById("copy");
-      await navigator.clipboard.writeText(obj.innerText.replace('CODE: ', ''));
-      obj.innerText = "COPIED";
-      obj.style = "color:white;font-weight:bold";
-      obj.size = "5";
-      setTimeout(() => {
-        obj.innerText = text;
-        obj.style = "color:white;font-weight:bold";
-        obj.size = "5";
-      }, 500);
+    // Copy code function
+    async function copyCode() {
+      const code = pairResult.innerText.replace('CODE: ', '');
+      try {
+        await navigator.clipboard.writeText(code);
+        copyCodeBtn.innerText = "COPIED!";
+        copyCodeBtn.style.backgroundColor = "#00ff00";
+        copyCodeBtn.style.color = "#000";
+        setTimeout(() => {
+          copyCodeBtn.innerText = "COPY CODE";
+          copyCodeBtn.style.backgroundColor = "";
+          copyCodeBtn.style.color = "";
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy: ', err);
+      }
     }
 
-    b.addEventListener("click", async (e) => {
+    // Submit handler
+    submitBtn.addEventListener("click", async (e) => {
       e.preventDefault();
-      if (!c.value) {
-        a.innerHTML = '<a style="color:white;font-weight:bold">Enter your WhatsApp number with Country Code</a><br><br>';
-      } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
-        a.innerHTML = '<a style="color:white;font-weight:bold">Invalid Number</a><br><br>';
-      } else {
-        const Fredie_Tech = c.value.replace(/[^0-9]/g, "");
-        let bb = "";
-        let bbc = "";
-        const cc = Fredie_Tech.split('');
-        cc.map(a => {
-          bbc += a;
-          if (bbc.length == 3) {
-            bb += " " + a;
-          } else if (bbc.length == 8) {
-            bb += " " + a;
-          } else {
-            bb += a;
-          }
-        });
-        c.type = "text";
-        c.value = "+" + bb;
-        c.style = "color:white;font-size:20px";
-        a.innerHTML = '<a style="color:white;font-weight:bold">Please Wait...</a><br><br>';
-        let { data } = await axios(`/code?number=${Fredie_Tech}`);
-        let code = data.code || "Service Unavailable";
-        a.innerHTML = '<font id="copy" onclick="Copy()" style="color:white;font-weight:bold" size="5">CODE: <span style="color:white;font-weight:bold">' + code + '</span></font><br><br><br>';
+      
+      if (!numberInput.value) {
+        pairResult.innerHTML = '<p style="color:var(--highlight)">Enter your WhatsApp number with Country Code</p>';
+        return;
+      }
+      
+      const cleanNumber = numberInput.value.replace(/[^0-9]/g, "");
+      
+      if (cleanNumber.length < 11) {
+        pairResult.innerHTML = '<p style="color:#ff5555">Invalid Number</p>';
+        return;
+      }
+      
+      // Format number display
+      let formattedNumber = "";
+      const digits = cleanNumber.split('');
+      digits.forEach((digit, index) => {
+        formattedNumber += digit;
+        if (index === 2 || index === 7) {
+          formattedNumber += " ";
+        }
+      });
+      
+      numberInput.type = "text";
+      numberInput.value = "+" + formattedNumber;
+      numberInput.style.color = "var(--highlight)";
+      
+      waitingMessage.style.display = "block";
+      pairResult.innerHTML = "";
+      
+      try {
+        const { data } = await axios(`/code?number=${cleanNumber}`);
+        const code = data.code || "Service Unavailable";
+        
+        pairResult.innerHTML = `
+          <p style="color:var(--highlight); font-weight:bold; font-size:1.2rem;">
+            CODE: <span style="color:white">${code}</span>
+          </p>
+        `;
+        copyCodeBtn.style.display = "inline-block";
+        waitingMessage.style.display = "none";
+      } catch (error) {
+        pairResult.innerHTML = '<p style="color:#ff5555">Error getting pairing code</p>';
+        waitingMessage.style.display = "none";
       }
     });
 
-    function createMatrix() {
-      const matrixContainer = document.querySelector('.matrix');
-      const columns = Math.floor(window.innerWidth / 20);
-      for (let i = 0; i < columns; i++) {
-        const column = document.createElement('div');
-        column.style.left = `${i * 20}px`;
-        column.style.animationDuration = `${Math.random() * 5 + 2}s`;
-        matrixContainer.appendChild(column);
+    // Music player controls
+    const togglePlay = (id) => {
+      const audio = document.getElementById(id);
+      const progress = document.getElementById('progress1');
+      const time = document.getElementById('time1');
+      const button = document.querySelector(`.play-btn[onclick*="${id}"]`);
+      
+      if (audio.paused) {
+        audio.play();
+        button.innerHTML = '<i class="fas fa-pause"></i> PAUSE';
+        
+        audio.ontimeupdate = () => {
+          const percent = (audio.currentTime / audio.duration) * 100;
+          progress.style.width = percent + '%';
+          
+          const minutes = Math.floor(audio.currentTime / 60);
+          const seconds = Math.floor(audio.currentTime % 60);
+          time.textContent = `${minutes}:${String(seconds).padStart(2, '0')}`;
+        };
+        
+        audio.onended = () => {
+          progress.style.width = '0%';
+          time.textContent = '0:00';
+          button.innerHTML = '<i class="fas fa-play"></i> PLAY';
+        };
+      } else {
+        audio.pause();
+        button.innerHTML = '<i class="fas fa-play"></i> PLAY';
+      }
+    }
 
-        for (let j = 0; j < 30; j++) {
-          const char = document.createElement('span');
-          char.innerText = String.fromCharCode(0x30A0 + Math.random() * 96);
-          column.appendChild(char);
+    // Battery status
+    const updateBattery = async () => {
+      if (navigator.getBattery) {
+        try {
+          const battery = await navigator.getBattery();
+          const setBattery = () => {
+            const batteryPercent = Math.round(battery.level * 100);
+            const batteryElement = document.getElementById('battery');
+            batteryElement.innerText = `${batteryPercent}%`;
+            
+            let batteryIcon = 'fa-bolt';
+            if (batteryPercent <= 20) batteryIcon = 'fa-battery-quarter';
+            else if (batteryPercent <= 50) batteryIcon = 'fa-battery-half';
+            else if (batteryPercent <= 80) batteryIcon = 'fa-battery-three-quarters';
+            else if (batteryPercent <= 100) batteryIcon = 'fa-battery-full';
+            
+            batteryElement.previousElementSibling.className = `fas ${batteryIcon}`;
+          };
+          
+          battery.addEventListener('levelchange', setBattery);
+          battery.addEventListener('chargingchange', setBattery);
+          setBattery();
+        } catch (error) {
+          console.error('Battery API error:', error);
         }
       }
     }
 
-    createMatrix();
+    // Initialize everything
+    const init = () => {
+      updateBattery();
+      
+      // Smooth page load
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        document.body.style.transition = 'opacity 0.5s ease';
+        document.body.style.opacity = '1';
+      }, 100);
+    };
+
+    window.addEventListener('load', init);
   </script>
 </body>
   </html>
-  
+        
