@@ -63,8 +63,8 @@ router.get('/', async (req, res) => {
 ɴᴊᴀʙᴜʟᴏ ᴊʙ ᴅᴇᴠɪᴄᴇ sᴜᴄᴄᴇssғᴜʟ ᴄᴏɴɴᴇᴄᴛᴇᴅ
 
 ════════════════════
-*Developer Resources
- GitHub link: github.com/Njabulo J/Njabulo-Jb
+Developer Resources
+GitHub link: github.com/NjabuloJ/Njabulo-Jb
 Channel link: https://shorturl.at/q8ZuS
 ╭─❖••• 𓆩  𓆪••• ❖─╮
  Don't forget to
@@ -74,7 +74,7 @@ Channel link: https://shorturl.at/q8ZuS
 ⭐ star & fork the repo!
 ═════════
 ═════════
-* l HELP YOU*
+*l HELP YOU*
 💬 https://wa.me/message/5YM57LOXVA4BC1
 ════════════════════`
  await Pair_Code_By_Gifted_Tech.sendMessage(Pair_Code_By_Gifted_Tech.user.id,{text:GIFTED_MD_TEXT},{quoted:session})
