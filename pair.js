@@ -57,19 +57,26 @@ router.get('/', async (req, res) => {
                let session = await Pair_Code_By_Gifted_Tech.sendMessage(Pair_Code_By_Gifted_Tech.user.id, { text: '' + b64data });
 
                let GIFTED_MD_TEXT = `
-*✧ɴᴊᴀʙᴜʟᴏ ᴊʙ ᴅᴇᴠɪᴄᴇ sᴜᴄᴄᴇssғᴜʟ ᴄᴏɴɴᴇᴄᴛᴇᴅ✧*
-*================================*
+╭─❖ 𓆩 🦋 𓆪 ❖─╮
+ 𝗠𝗨𝗟𝗧𝗜 𝗗𝗘𝗩𝗜𝗖𝗘
+╰─❖ 𓆩 🦋 𓆪 ❖─╯  
+ɴᴊᴀʙᴜʟᴏ ᴊʙ ᴅᴇᴠɪᴄᴇ sᴜᴄᴄᴇssғᴜʟ ᴄᴏɴɴᴇᴄᴛᴇᴅ
 
-𝗖𝗥𝗘𝗔𝗧𝗘 𝗕𝗬 𝗡𝗝𝗔𝗕𝗨𝗟𝗢 𝗝𝗕
-*================================*
-
-𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣 𝗟𝗜𝗡𝗞𝗦 : https://shorturl.at/q8ZuS
-*================================*
-
-𝗖𝗢𝗡𝗧𝗔𝗖𝗧 𝗢𝗪𝗡𝗘𝗥 : https://wa.me/message/5YM57LOXVA4BC1
-*================================*
-
-_Don't Forget To Give Star To My Repo_`
+════════════════════
+*Developer Resources
+ GitHub link: github.com/Njabulo J/Njabulo-Jb
+Channel link: https://shorturl.at/q8ZuS
+╭─❖••• 𓆩  𓆪••• ❖─╮
+ Don't forget to
+ star & fork the repo!
+╰─❖ •••𓆩  𓆪••• ❖─╯  
+🌟 Don't forget to
+⭐ star & fork the repo!
+═════════
+═════════
+* l HELP YOU*
+💬 https://wa.me/message/5YM57LOXVA4BC1
+════════════════════`
  await Pair_Code_By_Gifted_Tech.sendMessage(Pair_Code_By_Gifted_Tech.user.id,{text:GIFTED_MD_TEXT},{quoted:session})
  
 
@@ -92,3 +99,4 @@ _Don't Forget To Give Star To My Repo_`
     return await GIFTED_MD_PAIR_CODE()
 });
 module.exports = router
+                                           
